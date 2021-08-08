@@ -12,12 +12,12 @@ typedef struct DNode
 {
     int data;
     struct DNode  *prior,*next;
-} DNode, * DoubleList;
+}DNode, *DoubleList;
 
-void init_linklist(Linklist *l)/*å¯¹å•é“¾è¡¨è¿›è¡Œåˆå§‹åŒ–*/
+void init_linklist(Linklist *l)/*¶Ôµ¥Á´±í½øÐÐ³õÊ¼»¯*/
 {
-	*l=(Linklist) malloc(sizeof(Node)); /*ç”³è¯·ç»“ç‚¹ç©ºé—´*/
-	(*l)->next=NULL;                   /*ç½®ä¸ºç©ºè¡¨*/
+	*l=(Linklist) malloc(sizeof(Node)); /*ÉêÇë½áµã¿Õ¼ä*/
+	(*l)->next=NULL;                   /*ÖÃÎª¿Õ±í*/
 }
 
 void CreateFromTail(Linklist L)
@@ -31,7 +31,7 @@ void CreateFromTail(Linklist L)
     while(num!=0)
     {
         scanf("%d",&num);
-        s=(Node*)malloc(sizeof(Node)); //å»ºç«‹æ–°ç»“ç‚¹s
+        s=(Node*)malloc(sizeof(Node)); //½¨Á¢ÐÂ½áµãs
         s->data=num;
         r->next=s;
         r=s;
@@ -82,25 +82,44 @@ void Sort(int arr[], int len) {
             }
 }
 
+void Create_Double_Linked_List(DoubleList L)
+{
+    DNode *s,*r,*p;
+    int n;
+    scanf("%d",&n);
+    s=(DNode*)malloc(sizeof(DNode)); //½¨Á¢ÐÂ½áµãs
+    s->data=n;
+    s->next=L->next;
+    s->prior=L;
+    L->next=s;
+    L->prior=s;
+    p=s;
+    scanf("%d",n);
+    while(n)
+    {
+        if(n>p->data)
+        {
+            while(1)
+            {
+                if()
+            }
+        }
+    }
+
+
+
+}
 int main(void)
 {
-    Linklist pa,h;
-    int a[100],i=0;
-    Node *s;
-    pa=(Linklist)malloc(sizeof(Node));
-    pa->next=NULL;
-    CreateFromTail(pa);
-    h=pa;
-    while(h->next)
+    DoubleList pa;
+    pa=(DoubleList)malloc(sizeof(DNode));
+    pa->next=pa;
+    pa->prior=pa;
+    pa->data=0;
+    Create_Double_Linked_List(pa);
+    while(pa->next->data!=0)
     {
-        a[i]=h->next->data;
-        i++;
-        h=h->next;
-    }
-    Sort(a,ListLength(pa));
-    for(i=1;i<ListLength(pa);i++)
-    {
-        printf("%d ",a[i]);
+        printf("%d\r\n",pa->next->data);
+        pa=pa->next;
     }
 }
-
