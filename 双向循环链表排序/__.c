@@ -8,10 +8,16 @@ typedef struct Node
     struct Node *next;
 }Node,*Linklist;
 
-void init_linklist(Linklist *l)/*¶Ôµ¥Á´±í½øÐÐ³õÊ¼»¯*/
+typedef struct DNode
 {
-	*l=(Linklist) malloc(sizeof(Node)); /*ÉêÇë½áµã¿Õ¼ä*/
-	(*l)->next=NULL;                   /*ÖÃÎª¿Õ±í*/
+    int data;
+    struct DNode  *prior,*next;
+} DNode, * DoubleList;
+
+void init_linklist(Linklist *l)/*å¯¹å•é“¾è¡¨è¿›è¡Œåˆå§‹åŒ–*/
+{
+	*l=(Linklist) malloc(sizeof(Node)); /*ç”³è¯·ç»“ç‚¹ç©ºé—´*/
+	(*l)->next=NULL;                   /*ç½®ä¸ºç©ºè¡¨*/
 }
 
 void CreateFromTail(Linklist L)
@@ -25,7 +31,7 @@ void CreateFromTail(Linklist L)
     while(num!=0)
     {
         scanf("%d",&num);
-        s=(Node*)malloc(sizeof(Node)); //½¨Á¢ÐÂ½áµãs
+        s=(Node*)malloc(sizeof(Node)); //å»ºç«‹æ–°ç»“ç‚¹s
         s->data=num;
         r->next=s;
         r=s;
@@ -60,7 +66,7 @@ int ListLength(Linklist L)
     return j;
 }
 
-void bubble_sort(int arr[], int len) {
+void Sort(int arr[], int len) {
     int i, j, temp;
     //float temp1;
     for (i = 0; i < len - 1; i++)
@@ -91,11 +97,10 @@ int main(void)
         i++;
         h=h->next;
     }
-    bubble_sort(a,ListLength(pa));
+    Sort(a,ListLength(pa));
     for(i=1;i<ListLength(pa);i++)
     {
         printf("%d ",a[i]);
     }
 }
-
 
